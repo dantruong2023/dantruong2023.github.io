@@ -20,10 +20,10 @@ html{
     scroll-behavior: smooth;
 }
 
-
 :root{
     --header-height : 46px; 
 }
+
 
 a{
     text-decoration: none;
@@ -80,6 +80,7 @@ a{
     position : absolute;
     background-color: #009688;
     width : 600px;
+    max-width: 100%;
     background-color : #fff;
     left : 50%;
     transform : translateX(-50%) translateY(-50%);
@@ -161,8 +162,7 @@ a{
 }
 
 #header {
-    height : var(--header-height);
-    background-color : #333;
+    background-color : #000;
     position: fixed;
     width: 100%;
     top : 0;
@@ -170,7 +170,7 @@ a{
 }
 
 #nav{
-
+    /* display : inline-block; */
 }
 
 #nav li {
@@ -219,8 +219,10 @@ a{
 #nav li:hover ul.subnav{
     display:block;
 }
-
-div.search-bar{
+div.mobile-menu-btn {
+    display : none;
+}
+div.mobile-menu-btn,div.search-bar{
     /* background-color: red; */
     width: calc(var(--header-height) + 16px);
     height: var(--header-height);
@@ -230,12 +232,12 @@ div.search-bar{
     top : 0;
 }
 
-#header div.search-bar:hover{
+div.mobile-menu-btn:hover,#header div.search-bar:hover{
     background-color: #f44336;
     cursor:pointer;
 }
 
-#header div.search-bar i {
+div.mobile-menu-btn i,#header div.search-bar i {
     font-weight: bold;
     line-height: var(--header-height);
 }
@@ -268,7 +270,8 @@ div.search-bar{
 
 .content-section{
     width :800px;
-    padding : 64px 0 112px;
+    max-width : 100%;
+    padding : 64px 16px 112px 16px;
     margin-left : auto;
     margin-right : auto;
 }
@@ -478,4 +481,56 @@ div.search-bar{
     font-size: 15px;
     text-decoration: underline;
     color: #8b8484;
+}
+/* Mobile */
+@media (max-width:739px){
+    #nav > li{
+        width : auto;
+        display : block;
+
+    }
+    #nav .subnav{
+        position: initial;
+        background-color: #333;
+    }
+    #nav ul.subnav>li>a{
+        color : #fff;
+        padding : 1px 40px;
+    }
+    #nav > li:first-child{
+        display : inline-block;
+    }
+    #header{
+        overflow : hidden;
+        height : 46px;
+    }
+    #header .search-bar{
+        display : none;
+    }
+    div.mobile-menu-btn {
+        color : #fff;
+        display : block;
+    }
+    div.mobile-menu-btn:hover{
+        background-color : #ccc;
+        color : #000;
+    }
+    #slider > div {
+        display : none;
+    }
+    .col{
+        float : none;
+    }
+    .col-3,.col-2{
+        width : 100%;
+    }
+    .form-control{
+        width: 100%;
+    }
+    #buyTicket .formBuyTicket{
+        padding : 0 16px;
+    }
+    #buyTicket .header{
+        text-align: center;
+    }
 }
