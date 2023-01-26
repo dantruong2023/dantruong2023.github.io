@@ -133,6 +133,7 @@ a{
     width : 100%;
     height : 40px;
     border : 1px solid #333;
+    padding : 0 16px;
 }
 
 #buyTicket .container .btnPay{
@@ -482,8 +483,48 @@ div.mobile-menu-btn i,#header div.search-bar i {
     text-decoration: underline;
     color: #8b8484;
 }
+/* Tablet and mobile */
+@media (max-width:1023px){
+    button{
+        min-height : 48px;
+    }
+    input{
+        min-height : 48px;
+    }
+    .social a{
+        font-size : 48px;
+        margin : 0 8px;
+    }
+    #nav .subnav li{
+        padding : 5px 21px;
+    }
+    .contact-form p{
+        line-height: 2;
+    }
+}
+/* Tablet */
+@media (min-width:740px) and (max-width:1023px) {
+    @keyframes AnimateTopTablet{
+        from {
+            top : 0%;
+            opacity: 0;
+        }
+        to{
+            opacity : 1;
+            top : 28%;
+        }
+    }
+    #buyTicket .formBuyTicket{
+        top : 28%;
+        animation : AnimateTopTablet ease 0.3s;
+    }
+}   
+
 /* Mobile */
 @media (max-width:739px){
+    .s-full-width{
+        width : 100% !important;
+    }
     #nav > li{
         width : auto;
         display : block;
@@ -527,10 +568,17 @@ div.mobile-menu-btn i,#header div.search-bar i {
     .form-control{
         width: 100%;
     }
-    #buyTicket .formBuyTicket{
+    #buyTicket{
         padding : 0 16px;
     }
-    #buyTicket .header{
+    #buyTicket .formBuyTicket{
+        max-width : 95%;
+    }
+    #buyTicket .header h2{
         text-align: center;
+        max-width : 100%;
+    }
+    #content .member-img{
+        width : 60%;
     }
 }
