@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Học tiêu chuẩn BEM</title>
+       <link rel="stylesheet" href="style.css">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <body>
+      <div id="toast"></div>
+      <div class="flex-btn">
+        <button class="btn btn--success">Success</button>
+        <button class="btn btn--warn">Warning</button>
+        <button class="btn btn--danger">Error</button>
+      </div>
+      <script>
+        const $ = document.querySelector.bind(document)
+        const $$ = document.querySelectorAll.bind(document)
+        const icons = {
+            success : 'fa-circle-check',
+            warn : 'fa-circle-exclamation',
+            error : 'fa-xmark'
+        }
+        function toast({title = '',msg = '',type = 'warn',duration = 3000}){
+            var toast__block = $('#toast')
+            const toast = document.createElement('div');
+            toast.classList.add('toast',`toast--${type}`)
+            toast.style.animation = `slideinLeft ease .3s, fadeOut 1s ${(duration/1000).toFixed(2)}s forwards`
+            toast.innerHTML = `
+                <div class="toast__icon">
+                    <i class="fa-solid ${icons[type]}"></i>
+                </div>
+                <div class="toast__body">
+                    <h3 class="toast__title">
+                        ${title}
+                    </h3>
+                    <p class="toast__msg">
+                        ${msg}
+                    </p>
+                </div>
+                <div class="toast__close">
+                    <i class="fa-solid fa-circle-xmark"></i>
+                </div>`
+            toast__block.appendChild(toast)
+            setTimeout(()=>{
+                toast.remove()
+            },duration+1000)
+        }
+        
+        $$('.btn.btn--success').forEach((item)=>{
+            item.onclick = function(){
+                toast({
+                    title : "Success",
+                    msg : "Bạn đã kết nối thành công với PC!",
+                    type : "success",
+                    duration : 1000
+                })
+            }
+        })
+        $$('.btn.btn--warn').forEach((item)=>{
+            item.onclick = function(){
+                toast({
+                    title : "Warning",
+                    msg : "Bạn chưa cắm dây nguồn hoặc cổng kết nối!",
+                    type : "warn",
+                    duration : 2000
+                })
+            }
+        })
+        $$('.btn.btn--danger').forEach((item)=>{
+            item.onclick = function(){
+                toast({
+                    title : "Error",
+                    msg : "Không thể kết nối!",
+                    type : "error",
+                    duration : 3000
+                })
+            }
+        })
+        
+      </script>
+    </body>
+</html>
