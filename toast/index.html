@@ -21,11 +21,25 @@
             warn : 'fa-circle-exclamation',
             error : 'fa-xmark'
         }
+        const color = {
+            success : '#47d864',
+            warn : '#ffc021',
+            error : '#c22e2e'
+        }
+        
         function toast({title = '',msg = '',type = 'warn',duration = 3000}){
             var toast__block = $('#toast')
             const toast = document.createElement('div');
             toast.classList.add('toast',`toast--${type}`)
-            toast.style.animation = `slideinLeft ease .3s, fadeOut 1s ${(duration/1000).toFixed(2)}s forwards`
+            const autoRemoveId = setTimeout(()=>{
+                toast.remove()
+            },duration+1000)
+            toast.onclick = function(e){
+                if(e.target.closest('i.fa-circle-xmark')){
+                    this.remove()
+                    clearTimeout(autoRemoveId)
+                }
+            }
             toast.innerHTML = `
                 <div class="toast__icon">
                     <i class="fa-solid ${icons[type]}"></i>
@@ -40,11 +54,17 @@
                 </div>
                 <div class="toast__close">
                     <i class="fa-solid fa-circle-xmark"></i>
-                </div>`
+                </div>
+                <div class="toast__progress"></div>`
+            toast.style.animation = `slideinLeft ease .3s, fadeOut 1s ${(duration/1000).toFixed(2)}s forwards`
+            //Add hiệu ứng thanh thời gian cho progress
+            var progress = toast.querySelector('.toast__progress')
+            progress.style.animation = `progressing ease ${(duration/1000 + 1.3).toFixed(2)}s forwards`
+            progress.style.backgroundColor = color[type]
+            // Thêm toast vào block
             toast__block.appendChild(toast)
-            setTimeout(()=>{
-                toast.remove()
-            },duration+1000)
+            
+            
         }
         
         $$('.btn.btn--success').forEach((item)=>{
@@ -53,7 +73,7 @@
                     title : "Success",
                     msg : "Bạn đã kết nối thành công với PC!",
                     type : "success",
-                    duration : 1000
+                    duration : 5000
                 })
             }
         })
@@ -63,7 +83,7 @@
                     title : "Warning",
                     msg : "Bạn chưa cắm dây nguồn hoặc cổng kết nối!",
                     type : "warn",
-                    duration : 2000
+                    duration : 5000
                 })
             }
         })
