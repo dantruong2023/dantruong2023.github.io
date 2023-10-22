@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    padding : 0 15px 200px;
+}
+
+.heading {
+    font-size: 70px;
+    color:black;
+}
+
+tr.seperate{
+    height: 30px;
+}
+
+td {
+    text-align: center;
+    width: 5vw; /* Pixel (px) = (Viewport width unit (vw) * Viewport width) / 100 */
+    border: 1px solid white;
+    color: white;
+    size: 12px;
+    font-weight: 700;
+}
+
+td.index{
+    color : black;
+}
+
+.none {
+    border: none;
+}
+
+.color1 {
+    background-color: #00b6bc;
+}
+
+.color2 {
+    background-color: #1b67c9;
+}
+
+.color3 {
+    background-color: #a1669f;
+}
+
+.color4 {
+    background-color: #004e75;
+}
+
+.color5 {
+    background-color: #f53951;
+}
+
+.color6 {
+    background-color: #f5b659;
+}
+
+.color7 {
+    background-color: #f36d4a;
+}
+
+.color8 {
+    background-color: #59cf6e;
+}
+
+.color9 {
+    background-color: #329090;
+}
+
+.color10{
+    background-color: #562d56;
+}
+
+.color11{
+    background-color: #859998;
+}
+
+/* Flickering animation */
+@keyframes flicker {
+    0%, 17%, 33%, 50%, 66%, 83%, 100% {
+  
+        text-shadow:
+        0 0 5px #fff,
+        0 0 10px #0fa,
+        0 0 20px #0fa,
+        0 0 40px #0fa,
+        0 0 70px #0fa,
+        0 0 110px #0fa,
+        0 0 160px #0fa
+    }
+    
+    20%, 40%, 60%, 80% {        
+        text-shadow: none;
+    }    
+}
+  
+td:not(.none):hover {
+    filter: brightness(200%);
+    color: black;
+    position: relative;
+
+}
+
+td:not(.none):hover > .card {
+    display: block;
+}
+
+
+.card {
+    margin-top: 40%;
+    background-color: #ccc;
+    max-width: 30vw;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.card-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.card-description {
+    margin-top: 10px;
+}
